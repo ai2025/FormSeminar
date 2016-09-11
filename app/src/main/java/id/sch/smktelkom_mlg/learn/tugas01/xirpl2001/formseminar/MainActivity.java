@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     TextView tvHasil, tvHasil2, tvMapel, tvHasil3, tvHasil4;
     RadioButton rbLK, rbPR;
     CheckBox cbHTML, cbCSS, cbJS, cbPHP;
-    Spinner spProvinsi, spKota;
     int nMapel;
+    Spinner spProvinsi, spKota;
     String[][] arKota = {{"Jakarta Barat", "Jakarta Pusat", "Jakarta Selatan",
             "Jakarta Timur", "Jakarta Utara"}, {"Bandung", "Cirebon", "Bekasi",
     }, {"Semarang", "Magelang", "Surakarta"}, {"Surabaya", "Malang", "Blitar"},
@@ -61,11 +61,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listKota);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spKota.setAdapter(adapter);
+
         spProvinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
                 listKota.clear();
-                listKota.addAll(Arrays.asList(arKota[position]));
+                listKota.addAll(Arrays.asList(arKota[pos]));
                 adapter.notifyDataSetChanged();
                 spKota.setSelection(0);
             }
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         if (nama.isEmpty()) {
             etNama.setError("Nama belum diisi");
-        } else if (nama.length() < 2) {
+        } else if (nama.length() < 3) {
             etNama.setError("Nama minimal 3 karakter");
             valid = false;
         } else {
