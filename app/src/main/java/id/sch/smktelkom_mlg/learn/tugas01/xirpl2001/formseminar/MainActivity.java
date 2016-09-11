@@ -3,21 +3,33 @@ package id.sch.smktelkom_mlg.learn.tugas01.xirpl2001.formseminar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     EditText etNama, etEmail, etPass;
     Button bDaftar;
-    TextView tvHasil, tvHasil2, tvMapel;
+    TextView tvHasil, tvHasil2, tvMapel, tvHasil3, tvHasil4;
     RadioButton rbLK, rbPR;
     CheckBox cbHTML, cbCSS, cbJS, cbPHP;
+    Spinner spProvinsi, spKota;
     int nMapel;
-
+    String[][] arKota = {{"Jakarta Barat", "Jakarta Pusat", "Jakarta Selatan",
+            "Jakarta Timur", "Jakarta Utara"}, {"Bandung", "Cirebon", "Bekasi",
+    }, {"Semarang", "Magelang", "Surakarta"}, {"Surabaya", "Malang", "Blitar"},
+            {"Denpasar"}};
+    ArrayList<String> listKota = new ArrayList<>();
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         bDaftar = (Button) findViewById(R.id.buttonDaftar);
         tvHasil = (TextView) findViewById(R.id.textViewHasil);
         tvHasil2 = (TextView) findViewById(R.id.textViewHasil2);
+        tvHasil3 = (TextView) findViewById(R.id.textViewHasil3);
+        tvHasil4 = (TextView) findViewById(R.id.textViewHasil4);
         rbLK = (RadioButton) findViewById(R.id.radioButtonLk);
         rbPR = (RadioButton) findViewById(R.id.radioButtonPr);
         cbHTML = (CheckBox) findViewById(R.id.checkBoxHTML);
@@ -41,6 +55,25 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         cbCSS.setOnCheckedChangeListener(this);
         cbJS.setOnCheckedChangeListener(this);
         cbPHP.setOnCheckedChangeListener(this);
+        spProvinsi = (Spinner) findViewById(R.id.spinnerProvinsi);
+        spKota = (Spinner) findViewById(R.id.spinnerKota);
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listKota);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spKota.setAdapter(adapter);
+        spProvinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                listKota.clear();
+                listKota.addAll(Arrays.asList(arKota[position]));
+                adapter.notifyDataSetChanged();
+                spKota.setSelection(0);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         bDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 doProcess();
             }
         });
-
     }
 
     private void doProcess() {
@@ -75,14 +107,17 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         String mapel = "Materi yang Anda ambil adalah ;\n";
         int startlen = mapel.length();
-        if (cbHTML.isChecked()) mapel += cbHTML.getText() + "\\n";
-        if (cbCSS.isChecked()) mapel += cbCSS.getText() + "\\n";
-        if (cbJS.isChecked()) mapel += cbJS.getText() + "\\n";
-        if (cbPHP.isChecked()) mapel += cbPHP.getText() + "\\n";
+        if (cbHTML.isChecked()) mapel += cbHTML.getText() + " \n";
+        if (cbCSS.isChecked()) mapel += cbCSS.getText() + " \n";
+        if (cbJS.isChecked()) mapel += cbJS.getText() + " \n";
+        if (cbPHP.isChecked()) mapel += cbPHP.getText() + " \n";
 
         if (mapel.length() == startlen) mapel += "Anda Belum memilih Materi";
 
-        tvHasil2.setText(mapel);
+        tvHasil3.setText(mapel);
+
+        tvHasil4.setText("Wilayah Provinsi " + spProvinsi.getSelectedItem().toString()
+                + " Kota " + spKota.getSelectedItem().toString());
     }
 
     private boolean isValid() {
@@ -93,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         if (nama.isEmpty()) {
             etNama.setError("Nama belum diisi");
-        } else if (nama.length() <= 3) {
+        } else if (nama.length() < 2) {
             etNama.setError("Nama minimal 3 karakter");
             valid = false;
         } else {

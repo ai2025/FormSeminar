@@ -100,7 +100,8 @@
         <Spinner
             android:id="@+id/spinnerProvinsi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:entries="@array/provinsi" />
 
         <Spinner
             android:id="@+id/spinnerKota"
@@ -164,7 +165,25 @@
             android:id="@+id/textViewHasil2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center_horizontal"
+            android:padding="2dp"
+            tools:text="Hasil" />
+
+        <TextView
+            android:id="@+id/textViewHasil3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:gravity="center_horizontal"
+            android:padding="2dp"
+            tools:text="Hasil" />
+
+        <TextView
+            android:id="@+id/textViewHasil4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
             android:gravity="center_horizontal"
             android:padding="2dp"
             tools:text="Hasil" />
