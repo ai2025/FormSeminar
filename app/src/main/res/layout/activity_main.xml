@@ -28,35 +28,33 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_logo" />
 
-        <TextView
-            android:id="@+id/tvNama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nama" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/etNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="E-mail" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress" />
 
-        <TextView
-            android:id="@+id/tvPass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/etPass"
@@ -64,6 +62,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/tvGender"
@@ -142,10 +142,13 @@
 
         <Button
             android:id="@+id/bDaftar"
-            android:layout_width="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Daftar" />
+            android:background="@drawable/bgbtn"
+            android:text="Daftar"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/textViewHasil"
