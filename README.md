@@ -8,6 +8,7 @@ Aplikasi ini merupakan form pendaftaran untuk mengikuti seminar.
 ![ScreenShoot](https://github.com/ai2025/FormSeminar/blob/master/4.%20tampilan%20hasil.PNG "")
 
 
-Saya juga telah mengupload file apk dari form tersebut, dengan nama file **app-debug**.
+Link apk 
+https://drive.google.com/a/smktelkom-mlg.sch.id/file/d/0B2hoBOlGghT2TkR3OU51VnBQWEk/view?usp=sharing
 
 SEKIAN, DAN TERIMAKASIH
